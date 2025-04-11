@@ -5,9 +5,13 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder --win --x64 --config.asar=false"
   },
-  "keywords": ["sticky-notes", "electron", "desktop-app"],
+  "keywords": [
+    "sticky-notes",
+    "electron",
+    "desktop-app"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -22,19 +26,21 @@
     },
     "files": [
       "**/*",
-      "!dist/**/*"
+      "!dist/**/*",
+      "!node_modules/**/*"
     ],
     "win": {
       "target": "nsis",
-      "icon": "icons/icon128.png"
+      "icon": "icons/icon256.png",
+      "signAndEditExecutable": false
     },
     "mac": {
       "target": "dmg",
-      "icon": "icons/icon128.png"
+      "icon": "icons/icon256.png"
     },
     "linux": {
       "target": "AppImage",
-      "icon": "icons/icon128.png"
+      "icon": "icons/icon256.png"
     }
   }
 }

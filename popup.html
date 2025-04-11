@@ -14,7 +14,10 @@
                     <input type="checkbox" id="theme-toggle">
                     <span class="slider"></span>
                 </label>
-                <button id="minimize-btn">-</button>
+                <div class="window-controls">
+                    <button id="minimize-btn" class="window-control-btn">-</button>
+                    <button id="close-btn" class="window-control-btn">×</button>
+                </div>
             </div>
         </div>
 
@@ -25,11 +28,11 @@
             </div>
 
             <div class="search-section">
-                <input type="text" id="search-input" placeholder="Search saved items...">
+                <input type="text" id="search-input" placeholder="Search snippets...">
             </div>
 
             <div class="saved-items" id="saved-items">
-                <!-- Items will be dynamically added here -->
+                <!-- Saved items will be inserted here -->
             </div>
         </div>
     </div>

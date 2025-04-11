@@ -11,13 +11,14 @@ const searchInput = document.getElementById('search-input');
 const savedItemsContainer = document.getElementById('saved-items');
 const themeToggle = document.getElementById('theme-toggle');
 const minimizeBtn = document.getElementById('minimize-btn');
+const closeBtn = document.getElementById('close-btn');
 
 // Load saved items and theme preference
 async function loadData() {
     savedItems = await ipcRenderer.invoke('load-data');
     currentTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.checked = currentTheme === 'light';
+    themeToggle.checked = currentTheme === 'dark';
     renderItems();
 }
 
@@ -62,7 +63,7 @@ function renderItems() {
             <div class="item-text" title="${item.text}">${item.text}</div>
             <div class="item-controls">
                 <button class="copy-btn" onclick="handleCopy(${item.id})">Copy</button>
-                <button class="delete-btn" onclick="deleteItem(${item.id})">Delete</button>
+                <button class="delete-btn" onclick="deleteItem(${item.id})">×</button>
             </div>
         </div>
     `).join('');
@@ -75,10 +76,10 @@ function handleCopy(id) {
         copyToClipboard(item.text);
         const copyBtn = document.querySelector(`button[onclick="handleCopy(${id})"]`);
         const originalText = copyBtn.textContent;
-        copyBtn.textContent = 'Copied!';
+        copyBtn.textContent = '✓';
         setTimeout(() => {
             copyBtn.textContent = originalText;
-        }, 2000);
+        }, 1000);
     }
 }
 
@@ -102,18 +103,27 @@ textInput.addEventListener('keydown', (e) => {
     }
 });
 
-searchInput.addEventListener('input', () => {
-    renderItems();
-});
+searchInput.addEventListener('input', renderItems);
 
 themeToggle.addEventListener('change', () => {
-    currentTheme = themeToggle.checked ? 'light' : 'dark';
+    currentTheme = themeToggle.checked ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
     localStorage.setItem('theme', currentTheme);
 });
 
 minimizeBtn.addEventListener('click', () => {
     ipcRenderer.send('minimize-window');
+});
+
+closeBtn.addEventListener('click', () => {
+    ipcRenderer.send('close-window');
+});
+
+// Handle keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 'q') {
+        ipcRenderer.send('quit-app');
+    }
 });
 
 // Initialize

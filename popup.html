@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>QuickClip</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="draggable-header">
+            <div class="app-title">QuickClip</div>
+            <div class="header-controls">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <button id="minimize-btn">-</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="input-section">
+                <textarea id="text-input" placeholder="Enter text to save... (Shift+Enter for new line)"></textarea>
+                <button id="save-btn">Save</button>
+            </div>
+
+            <div class="search-section">
+                <input type="text" id="search-input" placeholder="Search saved items...">
+            </div>
+
+            <div class="saved-items" id="saved-items">
+                <!-- Items will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html> 

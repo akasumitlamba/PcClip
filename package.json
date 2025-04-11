@@ -1,0 +1,40 @@
+{
+  "name": "quickclip",
+  "version": "1.0.0",
+  "description": "A sticky notes desktop application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": ["sticky-notes", "electron", "desktop-app"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.quickclip.app",
+    "productName": "QuickClip",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icons/icon128.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "icons/icon128.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "icons/icon128.png"
+    }
+  }
+}

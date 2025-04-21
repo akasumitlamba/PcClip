@@ -1,4 +1,4 @@
-# QuickClip - Sticky Notes Desktop Application
+# QuickClip -Desktop Application -Early BETA Version
 
 QuickClip is a cross-platform desktop application that functions as a sticky notes tool, allowing users to save, manage, search, copy, and delete text snippets. The app stays on top of other windows and provides a clean, modern interface with both light and dark themes.
 
